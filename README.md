@@ -42,6 +42,7 @@ that `cmp #1,6(a0)` is where it tests if there's a loop on the sample, only the 
 ### Wait, there's more...
 #### Some other things the amazing Mrs Beanbag found, largely documented below for historical reasons
 
+* actually the biggie was the size of the data section that the mixer code got generated into, which wasn't quite big enough
 * also just realised it's shifting all the sample data by one bit, which makes sense since it's mixing two 8 bit channels into 1 but it means the original samples are now essentially 7 bit - there's tricks to avoid having to do that but it means rewriting the mixer
 * actually i just noticed some weird special-casing going on when the loop starts at the beginning of the sample, i don't understand the reasoning for it but it may be the difference between mods that work and mods that don't
 * the code assumes that where there's a loop it extends to the end of the sample. which is normally reasonable otherwise it's a bit of a waste of space - when it resets the data pointer back to the start of the loop, it looks at how far over the end of the sample it's gone, but in this case it hasn't actually gone off the end of the sample it's only gone off the end of the loop
